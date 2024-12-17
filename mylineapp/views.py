@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from linebot import LineBotApi, WebhookParser
 from linebot.exceptions import InvalidSignatureError, LineBotApiError
-from linebot.models import MessageEvent, TextSendMessage
+from linebot.models import MessageEvent, TextSendMessage, StickerSendMessage
 
 from datetime import datetime
 
@@ -43,7 +43,9 @@ def callback(request):
                 # 回傳收到的文字訊息
                 line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage( text = txtmsg ))
+                    [TextSendMessage( text = txtmsg ),
+                     StickerSendMessage(package_id=1070, sticker_id=17840)
+                    ])
 
 
 
