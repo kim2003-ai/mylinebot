@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from linebot import LineBotApi, WebhookParser
 from linebot.exceptions import InvalidSignatureError, LineBotApiError
-from linebot.models import MessageEvent, TextSendMessage, StickerSendMessage, ImageSendMessage
+from linebot.models import MessageEvent, TextSendMessage, StickerSendMessage, ImageSendMessage, LocationSendMessage
 
 from datetime import datetime
 
@@ -44,8 +44,12 @@ def callback(request):
                 line_bot_api.reply_message(
                     event.reply_token,
                     [TextSendMessage( text = txtmsg ),
+                     
                      StickerSendMessage(package_id=1070, sticker_id=17840),
-                     ImageSendMessage(original_content_url='https://media.glamourmagazine.co.uk/photos/667e9dd68a5e3cc3464bf3d4/16:9/w_2580,c_limit/K%20POP%20280624%20GettyImages-1484310044.jpg', preview_image_url='https://media.glamourmagazine.co.uk/photos/667e9dd68a5e3cc3464bf3d4/16:9/w_2580,c_limit/K%20POP%20280624%20GettyImages-1484310044.jpg')
+                     
+                     ImageSendMessage(original_content_url='https://media.glamourmagazine.co.uk/photos/667e9dd68a5e3cc3464bf3d4/16:9/w_2580,c_limit/K%20POP%20280624%20GettyImages-1484310044.jpg', preview_image_url='https://media.glamourmagazine.co.uk/photos/667e9dd68a5e3cc3464bf3d4/16:9/w_2580,c_limit/K%20POP%20280624%20GettyImages-1484310044.jpg'),
+
+                    LocationSendMessage(title='高雄巨蛋', address='Kaohsiung', latitude=22.670813,longitude=120.302678)
                     ])
 
 
