@@ -45,7 +45,7 @@ def callback(request):
                     event.reply_token,
                     [TextSendMessage( text = txtmsg ),
                      StickerSendMessage(package_id=1070, sticker_id=17840),
-                     ImageSendMessage(original_content_url='https://a001.wzu.edu.tw/datas/upload/Pictures/wzlogo_2020.png', preview_image_url='https://a001.wzu.edu.tw/datas/upload/Pictures/wzlogo_2020.png')
+                     ImageSendMessage(original_content_url='https://media.glamourmagazine.co.uk/photos/667e9dd68a5e3cc3464bf3d4/16:9/w_2580,c_limit/K%20POP%20280624%20GettyImages-1484310044.jpg', preview_image_url='https://media.glamourmagazine.co.uk/photos/667e9dd68a5e3cc3464bf3d4/16:9/w_2580,c_limit/K%20POP%20280624%20GettyImages-1484310044.jpg')
                     ])
 
 
