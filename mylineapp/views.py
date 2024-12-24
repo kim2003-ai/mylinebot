@@ -77,10 +77,20 @@ def callback(request):
                             '1112200110 (蘇怡嘉)','1110210048 (苗琇雯)']
 
                     replymsg = "今天最" + txtmsg[4:] +"的是:"+ random.choice(names)
-                    
+
                     line_bot_api.reply_message(
                         event.reply_token,
                         TextSendMessage( text = replymsg ))
+
+                elif txtmsg in ["龍山寺求籤","求籤","龍山寺拜拜"]:
+
+                    num = random.choice(range(1,101))
+                    imgurl = f"https://www.lungshan.org.tw/fortune_sticks/images/{num:0>3d}.jpg"
+
+                    line_bot_api.reply_message(
+                        event.reply_token,
+                        ImageSendMessage(original_content_url=imgurl,
+                        preview_image_url=imgurl))
 
                 else:
 
