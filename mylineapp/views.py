@@ -92,6 +92,18 @@ def callback(request):
                         ImageSendMessage(original_content_url=imgurl,
                         preview_image_url=imgurl))
 
+                elif txtmsg == "淺草寺求籤":
+                    num = random.choice(range(1,101))
+                    imgurl1 = f"https://qiangua.temple01.com/images/qianshi/fs_akt100/{num}.jpg"
+                    imgurl2 = f"https://qiangua.temple01.com/images/qianshi/fs_akt100/back/{num}.jpg" 
+
+                    line_bot_api.reply_message(
+                        event.reply_token,
+                        [ImageSendMessage(original_content_url=imgurl1,
+                        preview_image_url=imgurl1),
+                        ImageSendMessage(original_content_url=imgurl2,
+                        preview_image_url=imgurl2)])
+
                 else:
 
                     replymsg = "你所傳的訊息是:\n" + txtmsg
