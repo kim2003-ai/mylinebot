@@ -33,26 +33,28 @@ def callback(request):
             # 若有訊息事件
             if isinstance(event, MessageEvent):
 
-                currentDateAndTime = datetime.now()
-                currentTime = currentDateAndTime.strftime("%H:%M:%S")
+                txtmsg = event.message.text
 
-                txtmsg = "您所傳的訊是:\n"
-                txtmsg += currentTime + "\n"
-                txtmsg += event.message.text
+                if txtmsg in ["你好", "Hello", "早安", "Hi"]:
+                    
+                    stkpkg, stkid = 1070, 17840
+                    replymsg = "你好, 請問需要為你做什麼?"
 
-                # 回傳收到的文字訊息
-                line_bot_api.reply_message(
+                    line_bot_api.reply_message(
                     event.reply_token,
-                    [TextSendMessage( text = txtmsg ),
+                    [StickerSendMessage(package_id = stkpkg, sticker_id=stkid),
+                     TextSendMessage( text = replymsg )])
+
+                else:
+                    
+                    replymsg = "你所傳的訊息是:\n" + txtmsg
+
+                    # 回傳收到的文字訊息
+                    line_bot_api.reply_message(
+                        event.reply_token,
+                        TextSendMessage( text = replymsg ))
                      
-                     StickerSendMessage(package_id=1070, sticker_id=17840),
                      
-                     ImageSendMessage(original_content_url='https://media.glamourmagazine.co.uk/photos/667e9dd68a5e3cc3464bf3d4/16:9/w_2580,c_limit/K%20POP%20280624%20GettyImages-1484310044.jpg', preview_image_url='https://media.glamourmagazine.co.uk/photos/667e9dd68a5e3cc3464bf3d4/16:9/w_2580,c_limit/K%20POP%20280624%20GettyImages-1484310044.jpg'),
-
-                    LocationSendMessage(title='高雄巨蛋', address='Kaohsiung', latitude=22.670813,longitude=120.302678)
-                    ])
-
-
 
         return HttpResponse()
     else:
