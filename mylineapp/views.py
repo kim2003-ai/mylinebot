@@ -38,7 +38,7 @@ def invoice():
     nn = soup.find_all('p',class_="etw-tbiggest")
     rts += "特別獎:" + nn[0].text + "\n"
     rts += "特獎:" + nn[1].text + "\n"
-    rts += "頭獎:" + nn[2].text.strip() + nn[3].text.strip() + nn[4].text.strip()
+    rts += "頭獎:" + nn[2].text.strip() +", " + nn[3].text.strip() +", " + nn[4].text.strip()
 
     return rts
 
